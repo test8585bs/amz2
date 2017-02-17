@@ -9,7 +9,7 @@ db = Redis.connect('127.0.0.1', 6379)
 serpent = require('serpent')
 
 bot_init = function(on_reload) -- The function run when the bot is started or reloaded.
-	
+
 	print(colors('%{blue bright}Loading config.lua...'))
 	config = dofile('config.lua') -- Load configuration file.
 	if config.bot_api_key == '' then
@@ -26,9 +26,9 @@ bot_init = function(on_reload) -- The function run when the bot is started or re
 	cross = dofile('utilities.lua') -- Load miscellaneous and cross-plugin functions.
 	print(colors('%{blue bright}Loading API functions table...'))
 	api = require('methods')
-	
+
 	tot = 0
-	
+
 	bot = nil
 	while not bot do -- Get bot info and retry if unable to connect.
 		bot = api.getMe()
@@ -49,7 +49,7 @@ bot_init = function(on_reload) -- The function run when the bot is started or re
 		db:hincrby('bot:general', 'starts', 1)
 		api.sendMessage(config.admin, '*Bot started!*\n_'..os.date('On %A, %d %B %Y\nAt %X')..'_\n'..#plugins..' plugins loaded', true)
 	end
-	
+
 	-- Generate a random seed and "pop" the first random number. :)
 	math.randomseed(os.time())
 	math.random()
@@ -133,23 +133,23 @@ on_msg_receive = function(msg) -- The fn run whenever a message is received.
 		api.sendMessage(config.admin, 'Shit, a loop without msg!')
 		return
 	end
-	
+
 	if msg.date < os.time() - 5 then return end -- Do not process old messages.
 	if not msg.text then msg.text = msg.caption or '' end
-	
+
 	--for commands link
 	if msg.text:match('^/start .+') then
 		msg.text = '/' .. msg.text:input()
 	end
-	
+
 	--Group language
 	msg.lang = db:get('lang:'..msg.chat.id)
 	if not msg.lang then
 		msg.lang = 'en'
 	end
-	
+
 	collect_stats(msg) --resolve_username support, chat stats
-	
+
 	for i,v in pairs(plugins) do
 		--vardump(v)
 		local stop_loop
@@ -169,9 +169,9 @@ on_msg_receive = function(msg) -- The fn run whenever a message is received.
       						db:hincrby('bot:general', 'query', 1)
       						if msg.from then db:incrby('user:'..msg.from.id..':query', 1) end
       					end
-				
+
 						msg.text_lower = msg.text:lower()
-				
+
 						local success, result = pcall(function()
 							return v.action(msg, blocks, msg.lang)
 						end)
