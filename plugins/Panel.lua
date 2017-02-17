@@ -13,7 +13,7 @@ end
      if not database then
       return link
     end
-     return false, recycle
+     return recycle
     end
 
      local function check_rest(rest, examl)
