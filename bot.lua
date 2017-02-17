@@ -177,7 +177,7 @@ on_msg_receive = function(msg) -- The fn run whenever a message is received.
 							return v.action(msg, blocks, msg.lang)
 						end)
 						if not success then
-							api.sendReply(msg, '*oh shit :-|*\nthis is `bug`\nplease report this bug with `contact us` ;-) <3 !!', true)
+							api.sendReply(msg, 'این یک مشکل فنی است!\nبرای رفع آن به پشتیبانی مراجعه فرمایید', true)
 							print(msg.text, result)
 							save_log('errors', result, msg.from.id or false, msg.chat.id or false, msg.text or false)
           					api.sendLog('An error occurred.\nCheck the log')
