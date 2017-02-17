@@ -4,7 +4,7 @@ return {
   channel = 'JackiTeam_ch',
 
   plugins = {
-    'Help.lua','Panel.lua','Exam.lua','DataBase.lua'
+    'Help.lua','Panel.lua','Exam.lua','DataBase.lua', 'Start.lua'
   },
   api_errors = {
     [101] = 'Not enough rights to kick participant',
