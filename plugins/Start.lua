@@ -43,6 +43,7 @@ end
 local action = function(msg, blocks, ln)
 local db10 = db:get('start:'..msg.from.id)
 local db11 = db:get('users')
+local db12 = db:get(msg.from.id..':type')
 local stats = db11+1
     if blocks[1] == 'start' and not db10 == "started" then
     db:set('start:'..msg.from.id,'strated')
