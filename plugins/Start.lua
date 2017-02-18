@@ -60,14 +60,13 @@ local stats = db11+1
         local msg_id = msg.message_id
         local text
 if query == 'home' then
-            local text = "👋سلام "..msg.from.print_name.."!\nلطفا *نوع کاربری* خود را انتخاب کنید:"
+            local text = "👋سلام!\nلطفا *نوع کاربری* خود را انتخاب کنید:"
             local keyboard = do_keyboard_private()
         api.editMessageText(msg.chat.id, msg_id, text, keyboard, true)
 end
 		if query == 'school' then
             local text = "دوره تحصیلی* خود را انتخاب کنید*:"
             local keyboard = do_keyboard_school()
-            db:set('user:'..msg.from.id..':type','student')
         api.editMessageText(msg.chat.id, msg_id, text, keyboard, true)
 end
 if query == 'school1' then
@@ -93,6 +92,7 @@ return {
 	action = action,
 	triggers = {
 	    '^/(start)$',
+	    '^/(start) (.*)$',
 	    '^###cb:!(home)',
 	    '^###cb:!(school1)',
 	    '^###cb:!(school2)',
