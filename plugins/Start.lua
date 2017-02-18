@@ -64,6 +64,7 @@ local stats = tonumber(db11) + 1
         return
     end
     if msg.cb then
+local action = function(msg, blocks, ln)
         local query = blocks[1]
         local msg_id = msg.message_id
         local text
@@ -105,6 +106,5 @@ return {
 	    '^###cb:!(school1)',
 	    '^###cb:!(school2)',
 	    '^###cb:!(teach)',
-	    '^###cb:!(school)',
-
+	    '^###cb:!(school)'
 }}
