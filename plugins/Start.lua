@@ -53,9 +53,16 @@ local stats = db11+1
             local keyboard = do_keyboard_private()
             api.sendKeyboard(msg.from.id, message, keyboard, true)
             end
-        return
-    end
+        end
+	if blocks[1] == 'start' and blocks[2] and not db12 then
+            local message = "👋سلام "..msg.from.print_name.."!\nدوره تحصیلی خود را انتخاب کنید:"
+            local keyboard = do_keyboard_private()
+            api.sendKeyboard(msg.from.id, message, keyboard, true)
+            end
+	return
+	end
     if msg.cb then
+local action = function(msg, blocks, ln)
         local query = blocks[1]
         local msg_id = msg.message_id
         local text
