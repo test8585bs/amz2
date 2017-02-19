@@ -61,8 +61,8 @@ local stats = db11+1
             end
 	return
 	end
-    if msg.cb then
 local action = function(msg, blocks, ln)
+    if msg.cb then
         local query = blocks[1]
         local msg_id = msg.message_id
         local text
