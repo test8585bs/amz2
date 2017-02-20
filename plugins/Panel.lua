@@ -1,5 +1,6 @@
-local function is_not_used()
-  local signup = db:get('username:'..msg.from.id)
+local function is_not_used(id)
+  local hb1 = 'username'..id
+  local signup = db:get(hb1)
   local database = db:get(signup)
 	if not database then
 		return true
@@ -9,7 +10,8 @@ end
  local function exam_link()
   local recycle = exam_link()
   local link = math.random(0,999999999)
-  local database = db:get('exam:'..link)
+    local hb2 = 'exam:'..link
+  local database = db:get(hb2)
      if not database then
       return link
     end
@@ -229,31 +231,56 @@ local password = 'password:'..msg.from.id
 local db2 = db:get(password)
 local dbcheck = db:get(db1)
 local examlink = exam_link()
-local dblogin = db:get('login:'..msg.from.id)
-local dbexam1 = db:get('examname:new:'..msg.from.id)
-local dbexam2 = db:get('exammaker:new:'..msg.from.id)
-local dbexam3 = db:get('new:1:head:'..msg.from.id)
-local dbexam4 = db:get('new:2:head:'..msg.from.id)
-local dbexam5 = db:get('new:3:head:'..msg.from.id)
-local dbexam6 = db:get('new:4:head:'..msg.from.id)
-local dbexam7 = db:get('new:5:head:'..msg.from.id)
-local dbexam8 = db:get('new:6:head:'..msg.from.id)
-local dbexam9 = db:get('new:7:head:'..msg.from.id)
-local dbexam10 = db:get('new:8:head:'..msg.from.id)
-local dbexam11 = db:get('new:9:head:'..msg.from.id)
-local dbexam12 = db:get('new:10:head:'..msg.from.id)
-local dbetime = db:get('examtime:new:'..msg.from.id)
-local ans1 = db:get('new:1:ans:'..msg.from.id)
-local ans2 = db:get('new:2:ans:'..msg.from.id)
-local ans3 = db:get('new:3:ans:'..msg.from.id)
-local ans4 = db:get('new:4:ans:'..msg.from.id)
-local ans5 = db:get('new:5:ans:'..msg.from.id)
-local ans6 = db:get('new:6:ans:'..msg.from.id)
-local ans7 = db:get('new:7:ans:'..msg.from.id)
-local ans8 = db:get('new:8:ans:'..msg.from.id)
-local ans9 = db:get('new:9:ans:'..msg.from.id)
-local ans10 = db:get('new:10:ans:'..msg.from.id)
-local cans =  db:get('new:cor')
+          local hb3 = 'login:'..msg.from.id
+          local hb4 = 'examname:new:'..msg.from.id
+          local hb5 = 'exammaker:new:'..msg.from.id
+          local hb6 = 'new:1:head:'..msg.from.id
+          local hb7 = 'new:2:head:'..msg.from.id
+          local hb8 = 'new:3:head:'..msg.from.id
+          local hb9 = 'new:4:head:'..msg.from.id
+          local hb10 = 'new:5:head:'..msg.from.id
+          local hb11 = 'new:6:head:'..msg.from.id
+          local hb12 = 'new:7:head:'..msg.from.id
+          local hb13 = 'new:8:head:'..msg.from.id
+          local hb14 = 'new:9:head:'..msg.from.id
+          local hb15 = 'new:10:head:'..msg.from.id
+          local hb16 = 'examtime:new:'..msg.from.id
+          local hb17 = 'new:1:ans:'..msg.from.id
+          local hb18 = 'new:2:ans:'..msg.from.id
+          local hb19 = 'new:3:ans:'..msg.from.id
+          local hb20 = 'new:4:ans:'..msg.from.id
+          local hb21 = 'new:5:ans:'..msg.from.id
+          local hb22 = 'new:6:ans:'..msg.from.id
+          local hb23 = 'new:7:ans:'..msg.from.id
+          local hb24 = 'new:8:ans:'..msg.from.id
+          local hb25 = 'new:9:ans:'..msg.from.id
+          local hb26 = 'new:10:ans:'..msg.from.id
+          local hb27 = 'new:cor'
+local dblogin = db:get(hb3)
+local dbexam1 = db:get(hb4)
+local dbexam2 = db:get(hb5)
+local dbexam3 = db:get(hb6)
+local dbexam4 = db:get(hb7)
+local dbexam5 = db:get(hb8)
+local dbexam6 = db:get(hb9)
+local dbexam7 = db:get(hb10)
+local dbexam8 = db:get(hb11)
+local dbexam9 = db:get(hb12)
+local dbexam10 = db:get(hb13)
+local dbexam11 = db:get(hb14)
+local dbexam12 = db:get(hb15)
+local dbetime = db:get(hb16)
+local ans1 = db:get(hb17)
+local ans2 = db:get(hb18)
+local ans3 = db:get(hb19)
+local ans4 = db:get(hb20)
+local ans5 = db:get(hb21)
+local ans6 = db:get(hb22)
+local ans7 = db:get(hb23)
+local ans8 = db:get(hb24)
+local ans9 = db:get(hb25)
+local ans10 = db:get(hb26)
+local cans = db:get(hb27)
 local linkexam = "https://telegram.me/AmoozBot?start="..examlink
  local example = [[ورودی:
 a = "گزینه اول"
@@ -290,8 +317,10 @@ a = "3"
   local examl = blocks[2]
   if check_rest(rest, examl) then
   local chat_id = msg.from.id
-  local famili = db:get(blocks[3]..':lname')
-  local naam = db:get(blocks[3]..':fname')
+  local hb28 = blocks[3]..':lname'
+  local famili = db:get(hb28)
+  local hb29 = blocks[3]..':fname'
+  local naam = db:get(hb29)
   local fullname = naam..' '..famili
   local message = "کارنامه "..fullname..' برای شما ارسال شد'
   api.sendMessage(chat_id, mesaage, true)
@@ -300,11 +329,14 @@ a = "3"
   api.sendMessage(msg.from.id, 'شناسه کاربری و یا کد امتحان ارسال شده نادرست است', true)
   end
     if blocks[1] and db1 == "waiting for choose" and msg.chat.type == 'private' and not blocks[1]:find(":") then
-        if is_not_used() then
+local idd = msg.from.id
+        if is_not_used(idd) then
             local message = "نام کاربری انتخاب شد! گذرواژه مورد نظر را ارسال نمایید"
             local keyboard = do_keyboard_private()
-            db:set(username,blocks[1])
-            db:set(password,'waiting for choose')
+            local hb30 = blocks[1]
+            local hb31 = 'waiting for send'
+            db:set(username,hb30)
+            db:set(password,hb31)
             api.sendKeyboard(msg.from.id, message, keyboard, true)
             end
           local message = "این نام کاربری قبلا انتخاب شده است، لطفا نام کاربری دیگری را امتحان کنید"
@@ -314,43 +346,66 @@ a = "3"
   if blocks[1] and db2 == "waiting for choose" and msg.chat.type == 'private' then
             local message = "گذرواژه انتخاب شد و مراحل اولیه ثبت نام نیز انجام شد!\n به ازای برگزاری و طراحی هر امتحان میبایستی مبلغ ۱۰۰۰۰ ریال را پرداخت کنید که هم اکنون نیز میتوانید حساب کاربری خود را به مقدار دلخواه شارژ کنید." --editable
             local keyboard = do_keyboard_chargenow()
-            db:set(db1,blocks[1])
-            db:set(db1..':lastid',msg.from.id)
-            db:set(db1..':charge','0')
+            local hb32 = blocks[1]
+            local hb33 = db1..':lastid'
+            local hb34 = msg.from.id
+            local hb35 = db1..':charge'
+            local hb36 = '0'
+            db:set(db1,hb32)
+            db:set(hb33,hb34)
+            db:set(hb35,hb36)
             api.sendKeyboard(msg.from.id, message, keyboard, true)
             end
   if blocks[1] and db1 == "waiting for send" and msg.chat.type == 'private' then
                   local message = "اکنون گذرواژه حساب خود را ارسال کنید"
                   local keyboard = do_keyboard_login()
-                  db:set('username:'..msg.from.id,blocks[1])
-                  db:set('password:'..msg.from.id,'waiting for send')
+                  local hb37 = 'username:'..msg.from.id
+                  local hb38 = blocks[1]
+                  local hb39 = 'password:'..msg.from.id
+                  local hb40 = 'waiting for send'
+                  db:set(hb37,hb38)
+                  db:set(hb39,hb40)
                   api.sendKeyboard(msg.from.id, message, keyboard, true)
                   end
               if blocks[1] and db2 == "waiting for send" and msg.chat.type == 'private' then
               local message = "اطلاعات وارد شده:\nUsername : "..db1.."\nPassword : "..db2
               local keyboard = do_keyboard_loginid()
-              db:set('password:'..msg.from.id,blocks[1])
+              local hb41 = 'password:'..msg.from.id
+              local hb42 = blocks[1]
+              db:set(hb41,hb42)
               api.sendKeyboard(msg.from.id, message, keyboard, true)
               end
       if blocks[1] and dbexam1 == 'w8' and msg.chat.type == 'private' then
               local message = "عنوان امتحان انتخاب شد\nاکنون مدت زمان امتحان را به دقیقه و ارقام لاتین ارسال نمایید"
               local keyboard = do_keyboard_newexam()
-              db:set('examtime:new:'..msg.from.id,'w8')
-              db:set('examname:new:'..msg.from.id,blocks[1])
+              local hb43 = 'examtime:new:'..msg.from.id
+              local hb44 = 'w8'
+              local hb45 = 'examname:new:'..msg.from.id
+              local hb46 = blocks[1]
+              db:set(hb43,hb44)
+              db:set(hb45,hb46)
               api.sendKeyboard(msg.from.id, message, keyboard, true)
               end
       if blocks[1] and dbetime == 'w8' and msg.chat.type == 'private' then
               local message = "مدت زمان امتحان تنظیم شد\nاکنون نام نویسنده(نام شما) را ارسال کنید"
               local keyboard = do_keyboard_newexam()
-              db:set('exammaker:new:'..msg.from.id,'w8')
-              db:set('examtime:new:'..msg.from.id,blocks[1])
+              local hb47 = 'exammaker:new:'..msg.from.id
+              local hb48 = 'w8'
+              local hb49 = 'examtime:new:'..msg.from.id
+              local hb50 = blocks[1]
+              db:set(hb47,hb48)
+              db:set(hb49,hb50)
               api.sendKeyboard(msg.from.id, message, keyboard, true)
               end
       if blocks[1] and dbexam2 == 'w8' and msg.chat.type == 'private' then
               local message = "نام نویسنده انتخاب شد\nصورت سوال تست شماره *1* را ارسال کنید"
               local keyboard = do_keyboard_newexam()
-              db:set('new:1:head:'..msg.from.id,'w8')
-              db:set('exammaker:new:'..msg.from.id,block[1])
+              local hb51 = 'new:1:head:'..msg.from.id
+              local hb52 = 'w8'
+              local hb53 = 'exammaker:new:'..msg.from.id
+              local hb54 =
+              db:set(hb51,hb52)
+              db:set(hb53,hb54)
               api.sendKeyboard(msg.from.id, message, keyboard, true)
               end
   if blocks[1] and dbexam3 == 'w8' and msg.chat.type == 'private' then

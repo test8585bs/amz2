@@ -41,13 +41,19 @@ local function do_keyboard_school2()
     return keyboard
 end
 local action = function(msg, blocks, ln)
-local db10 = db:get('start:'..msg.from.id)
-local db11 = db:get('users')
-local db12 = db:get(msg.from.id..':type')
+local hbb1 = 'start:'..msg.from.id
+local hbb2 = 'users'
+local hbbb3 = msg.from.id..':type'
+local db10 = db:get(hbb1)
+local db11 = db:get(hbb2)
+local db12 = db:get(hbb3)
 local stats = db11+1
     if blocks[1] == 'start' and not db10 == "started" then
-    db:set('start:'..msg.from.id,'strated')
-    db:set('users',stats)
+    local hbb4 = 'start:'..msg.from.id
+    local hbb5 = 'strated'
+    local hbb6 = 'users'
+    db:set(hbb4,hbb5)
+    db:set(hbb6,stats)
         if msg.chat.type == 'private' then
             local message = "👋سلام "..msg.from.print_name.."!\nدوره تحصیلی خود را انتخاب کنید:"
             local keyboard = do_keyboard_private()
