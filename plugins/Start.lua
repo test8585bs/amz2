@@ -48,19 +48,17 @@ local db10 = db:get(hbb1)
 local db11 = db:get(hbb2)
 local db12 = db:get(hbb3)
 local stats = db11+1
-    if blocks[1] == 'start' and not db10 == "started" then
+    if blocks[1] == 'start' and not db10 == "started" and msg.chat.type == 'private' then
     local hbb4 = 'start:'..msg.from.id
     local hbb5 = 'strated'
     local hbb6 = 'users'
     db:set(hbb4,hbb5)
     db:set(hbb6,stats)
-        if msg.chat.type == 'private' then
             local message = "👋سلام!\nدوره تحصیلی خود را انتخاب کنید:"
             local keyboard = do_keyboard_private()
             api.sendKeyboard(msg.from.id, message, keyboard, true)
             end
-        end
-	if blocks[1] == 'start' and blocks[2] and not db12 then
+	if blocks[1] == 'start' and blocks[2] and not db12 and msg.chat.type == 'private' then
             local message = "👋سلام!\nدوره تحصیلی خود را انتخاب کنید:"
             local keyboard = do_keyboard_private()
             api.sendKeyboard(msg.from.id, message, keyboard, true)
