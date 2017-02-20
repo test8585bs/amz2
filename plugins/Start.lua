@@ -1,7 +1,13 @@
 local function do_keyboard_private()
     local keyboard = {}
     keyboard.inline_keyboard = {
-    	{{text = '📌دانش آموز', callback_data = '!school'}}, {{text = '📌آموزگار', callback_data = '!teach'}}}
+    	{
+			{text = '📌دانش آموز', callback_data = '!school'},
+		},
+		{
+			{text = '📌آموزگار', callback_data = '!teach'},
+		}
+	}
     return keyboard
 end
 
