@@ -48,7 +48,7 @@ local db10 = db:get(hbb1)
 local db11 = db:get(hbb2)
 local db12 = db:get(hbb3)
 local stats = db11+1
-    if blocks[1] == 'start' and not db10 == "started" and msg.chat.type == 'private' then
+    if blocks[1] == 'start' and msg.chat.type == 'private' then
     local hbb4 = 'start:'..msg.from.id
     local hbb5 = 'strated'
     local hbb6 = 'users'
