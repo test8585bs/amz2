@@ -1,5 +1,5 @@
 return {
-  bot_api_key = '247505227:AAG1Iatya9cbYB2TjVouvI0D3P8FhDcrtt0',
+  bot_api_key = '367241355:AAFWrJw1rxaWofmDiDqe2t3G-VjnQPb_UBk',
   admin = 221425094,
   channel = 'JackiTeam_ch',
 
