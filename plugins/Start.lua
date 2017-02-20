@@ -55,13 +55,13 @@ local stats = db11+1
     db:set(hbb4,hbb5)
     db:set(hbb6,stats)
         if msg.chat.type == 'private' then
-            local message = "👋سلام "..msg.from.print_name.."!\nدوره تحصیلی خود را انتخاب کنید:"
+            local message = "👋سلام!\nدوره تحصیلی خود را انتخاب کنید:"
             local keyboard = do_keyboard_private()
             api.sendKeyboard(msg.from.id, message, keyboard, true)
             end
         end
 	if blocks[1] == 'start' and blocks[2] and not db12 then
-            local message = "👋سلام "..msg.from.print_name.."!\nدوره تحصیلی خود را انتخاب کنید:"
+            local message = "👋سلام!\nدوره تحصیلی خود را انتخاب کنید:"
             local keyboard = do_keyboard_private()
             api.sendKeyboard(msg.from.id, message, keyboard, true)
             end
