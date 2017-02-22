@@ -22,7 +22,7 @@ local function do_keyboard_privatea()
 	}
     return keyboard
 end
-local function do_keyboard_private3()
+local function do_keyboard_privateb()
     local keyboard = {}
     keyboard.inline_keyboard = {
     	{
@@ -88,7 +88,7 @@ local stats = db11+1
             api.sendKeyboard(msg.from.id, message, keyboard, true)
 	else if blocks[1] == 'start' and blocks[2] and not db12 and msg.chat.type == 'private' then
             local message = "👋سلام!\nدوره تحصیلی خود را انتخاب کنید:"
-            local keyboard = do_keyboard_private2()
+            local keyboard = do_keyboard_privatea()
             api.sendKeyboard(msg.from.id, message, keyboard, true)
             end
 	end
@@ -101,7 +101,7 @@ local action = function(msg, blocks, ln)
         local text
 if query == 'home' then
             local text = "👋سلام!\nلطفا *نوع کاربری* خود را انتخاب کنید:"
-            local keyboard = do_keyboard_private3()
+            local keyboard = do_keyboard_privateb()
         api.editMessageText(msg.chat.id, msg_id, text, keyboard, true)
 end
 		if query == 'school' then
