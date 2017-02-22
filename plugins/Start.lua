@@ -10,7 +10,30 @@ local function do_keyboard_private()
 	}
     return keyboard
 end
-
+local function do_keyboard_private2()
+    local keyboard = {}
+    keyboard.inline_keyboard = {
+    	{
+			{text = 'دانش آموز', callback_data = '!school'},
+		},
+		{
+			{text = 'آموزگار', callback_data = '!teach'},
+		}
+	}
+    return keyboard
+end
+local function do_keyboard_private3()
+    local keyboard = {}
+    keyboard.inline_keyboard = {
+    	{
+			{text = 'دانش آموز', callback_data = '!school'},
+		},
+		{
+			{text = 'آموزگار', callback_data = '!teach'},
+		}
+	}
+    return keyboard
+end
 local function do_keyboard_school()
     local keyboard = {}
     keyboard.inline_keyboard = {
@@ -54,26 +77,21 @@ local db10 = db:get(hbb1)
 local db11 = db:get(hbb2)
 local db12 = db:get(hbb3)
 local stats = db11+1
-    if blocks[1] == 'start' then
+    if blocks[1] == 'start' and msg.chat.type == 'private' then
     local hbb4 = 'start:'..msg.from.id
     local hbb5 = 'started'
     local hbb6 = 'users'
     db:set(hbb4,hbb5)
     db:set(hbb6,stats)
-		if  msg.chat.type == 'private' then
             local message = "👋سلام!\nدوره تحصیلی خود را انتخاب کنید:"
             local keyboard = do_keyboard_private()
             api.sendKeyboard(msg.from.id, message, keyboard, true)
             end
-		return 
-		end
-	if blocks[1] == 'start' and blocks[2] and not db12 then
-		if msg.chat.type == 'private' then
+	else if blocks[1] == 'start' and blocks[2] and not db12 and msg.chat.type == 'private' then
             local message = "👋سلام!\nدوره تحصیلی خود را انتخاب کنید:"
-            local keyboard = do_keyboard_private()
+            local keyboard = do_keyboard_private2()
             api.sendKeyboard(msg.from.id, message, keyboard, true)
             end
-	return
 	end
 	return
 	end
@@ -84,7 +102,7 @@ local action = function(msg, blocks, ln)
         local text
 if query == 'home' then
             local text = "👋سلام!\nلطفا *نوع کاربری* خود را انتخاب کنید:"
-            local keyboard = do_keyboard_private()
+            local keyboard = do_keyboard_private3()
         api.editMessageText(msg.chat.id, msg_id, text, keyboard, true)
 end
 		if query == 'school' then

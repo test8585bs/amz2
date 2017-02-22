@@ -94,6 +94,20 @@ local function do_keyboard_coming()
   }
     return keyboard
 end
+local function do_keyboard_coming2()
+    local keyboard = {}
+    keyboard.inline_keyboard = {
+    	{{text = ' 🔙 ', callback_data = '!teacheron'}}
+  }
+    return keyboard
+end
+local function do_keyboard_coming3()
+    local keyboard = {}
+    keyboard.inline_keyboard = {
+    	{{text = ' 🔙 ', callback_data = '!teacheron'}}
+  }
+    return keyboard
+end
 local function do_keyboard_examadded()
     local keyboard = {}
     keyboard.inline_keyboard = {
@@ -104,7 +118,17 @@ end
 local function do_keyboard_teacheron()
     local keyboard = {}
     keyboard.inline_keyboard = {
-      {{text = 'حساب کاربری', callback_data ='!accounton'}},
+      {{text = 'حساب کاربری', callback_data ='!accountoff'}},
+    	{{text = '📝امتحانات', callback_data = '!exams'}},
+		{{text = '✏️دانش آموزان✏️', callback_data = '!students'}},
+	   {{text = '❓راهنما', callback_data = '!help'}}
+  }
+    return keyboard
+end
+local function do_keyboard_teacheron2()
+    local keyboard = {}
+    keyboard.inline_keyboard = {
+      {{text = 'حساب کاربری', callback_data ='!accountoff'}},
     	{{text = '📝امتحانات', callback_data = '!exams'}},
 		{{text = '✏️دانش آموزان✏️', callback_data = '!students'}},
 	   {{text = '❓راهنما', callback_data = '!help'}}
@@ -151,12 +175,20 @@ end
 local function do_keyboard_signup()
     local keyboard = {}
     keyboard.inline_keyboard = {
-			{{text = 'راهنما', url = 'https://jacki-team.ir/AmoozzBot/Help.html'}, --editable
+			{{text = 'راهنما', url = 'https://amoozz.jacki-team.ir/Help/'}, --editable
 	    }
     }
     return keyboard
 end
 local function do_keyboard_login()
+    local keyboard = {}
+    keyboard.inline_keyboard = {
+			{{text = 'راهنما', url = 'https://jacki-team.ir/AmoozzBot/Help.html'}, --editable
+     }
+    }
+    return keyboard
+end
+local function do_keyboard_login2()
     local keyboard = {}
     keyboard.inline_keyboard = {
 			{{text = 'راهنما', url = 'https://jacki-team.ir/AmoozzBot/Help.html'}, --editable
@@ -179,16 +211,6 @@ local function do_keyboard_login2()
     }
     return keyboard
 end
-local function do_keyboard_login3()
-    local keyboard = {}
-    keyboard.inline_keyboard = {
-      {{text = 'حساب کاربری', callback_data ='!accounton'}},
-    	{{text = '📝امتحانات', callback_data = '!exams'}},
-		{{text = '✏️دانش آموزان✏️', callback_data = '!students'}},
-	   {{text = '❓راهنما', callback_data = '!help'}}
-  }
-    return keyboard
-end
 local function do_keyboard_chargenow()
     local keyboard = {}
     keyboard.inline_keyboard = {
@@ -197,6 +219,18 @@ local function do_keyboard_chargenow()
     return keyboard
 end
 local function do_keyboard_charge()
+    local keyboard = {}
+    keyboard.inline_keyboard = {
+        {{text = '۵۰۰۰۰ ریال', url = 'https://www.payping.ir/d/cABg'}},  --editable
+        {{text = '۱۰۰۰۰۰ ریال', url = 'https://www.payping.ir/d/jbfw'}},  --editable
+        {{text = '۲۰۰۰۰۰ ریال', url = 'https://www.payping.ir/d/RM1z'}},  --editable
+			{{text = '۵۰۰۰۰۰ ریال', url = 'https://www.payping.ir/d/VFdO'}},  --editable
+         {{text = 'ارسال کد شارژ', callback_data = '!chargecode'}},
+         {{text = '🔙', callback_data = '!accounton'}}
+    }
+    return keyboard
+end
+local function do_keyboard_charge2()
     local keyboard = {}
     keyboard.inline_keyboard = {
         {{text = '۵۰۰۰۰ ریال', url = 'https://www.payping.ir/d/cABg'}},  --editable
@@ -331,16 +365,15 @@ a = "3"
     if blocks[1] and db1 == "waiting for choose" and msg.chat.type == 'private' and not blocks[1]:find(":") then
 local idd = msg.from.id
         if is_not_used(idd) then
-            local message = "نام کاربری انتخاب شد! گذرواژه مورد نظر را ارسال نمایید"
-            local keyboard = do_keyboard_private()
+            local text = "نام کاربری انتخاب شد! گذرواژه مورد نظر را ارسال نمایید"
             local hb30 = blocks[1]
             local hb31 = 'waiting for send'
             db:set(username,hb30)
             db:set(password,hb31)
-            api.sendKeyboard(msg.from.id, message, keyboard, true)
+            api.sendMessage(msg.from.id, text, true)
             end
           local message = "این نام کاربری قبلا انتخاب شده است، لطفا نام کاربری دیگری را امتحان کنید"
-          local keyboard = do_keyboard_login()
+          local keyboard = do_keyboard_login2()
           api.sendKeyboard(msg.from.id, message, keyboard, true)
           end
   if blocks[1] and db2 == "waiting for choose" and msg.chat.type == 'private' then
@@ -403,7 +436,7 @@ local idd = msg.from.id
               local hb51 = 'new:1:head:'..msg.from.id
               local hb52 = 'w8'
               local hb53 = 'exammaker:new:'..msg.from.id
-              local hb54 =
+              local hb54 = blocks[1]
               db:set(hb51,hb52)
               db:set(hb53,hb54)
               api.sendKeyboard(msg.from.id, message, keyboard, true)
@@ -411,71 +444,111 @@ local idd = msg.from.id
   if blocks[1] and dbexam3 == 'w8' and msg.chat.type == 'private' then
           local message = "صورت سوال *1* تنظیم شد\nصورت سوال تست شماره *2* را ارسال کنید"
           local keyboard = do_keyboard_newexam()
-          db:set('new:2:head:'..msg.from.id,'w8')
-          db:set('new:1:head:'..msg.from.id,blocks[1])
+          local hb55 = 'new:2:head:'..msg.from.id
+          local hb56 = 'w8'
+          local hb57 = 'new:1:head:'..msg.from.id
+          local hb58 = blocks[1]
+          db:set(hb55,hb56)
+          db:set(hb57,hb58)
           api.sendKeyboard(msg.from.id, message, keyboard, true)
           end
           if blocks[1] and dbexam4 == 'w8' and msg.chat.type == 'private' then
                   local message = "صورت سوال *2* تنظیم شد\nصورت سوال تست شماره *3* را ارسال کنید"
                   local keyboard = do_keyboard_newexam()
-                  db:set('new:3:head:'..msg.from.id,'w8')
-                  db:set('new:2:head:'..msg.from.id,blocks[1])
+                  local hb59 = 'new:3:head:'..msg.from.id
+                  local hb60 = 'w8'
+                  local hb61 = 'new:2:head:'..msg.from.id
+                  local hb62 = blocks[1]
+                  db:set(hb59,hb60)
+                  db:set(hb61,hb62)
                   api.sendKeyboard(msg.from.id, message, keyboard, true)
                   end
                   if blocks[1] and dbexam5 == 'w8' and msg.chat.type == 'private' then
                           local message = "صورت سوال *3* تنظیم شد\nصورت سوال تست شماره *4* را ارسال کنید"
                           local keyboard = do_keyboard_newexam()
-                          db:set('new:4:head:'..msg.from.id,'w8')
-                          db:set('new:3:head:'..msg.from.id,blocks[1])
+                          local hb63 = 'new:4:head:'..msg.from.id
+                          local hb64 = 'w8'
+                          local hb65 = 'new:3:head:'..msg.from.id
+                          local hb66 = blocks[1]
+                          db:set(hb63,hb64)
+                          db:set(hb65,hb66)
                           api.sendKeyboard(msg.from.id, message, keyboard, true)
                           end
                           if blocks[1] and dbexam6 == 'w8' and msg.chat.type == 'private' then
                                   local message = "صورت سوال *4* تنظیم شد\nصورت سوال تست شماره *5* را ارسال کنید"
                                   local keyboard = do_keyboard_newexam()
-                                  db:set('new:5:head:'..msg.from.id,'w8')
-                                  db:set('new:4:head:'..msg.from.id,blocks[1])
+                                  local hb67 = 'new:5:head:'..msg.from.id
+                                  local hb68 = 'w8'
+                                  local hb69 = 'new:4:head:'..msg.from.id
+                                  local hb70 = blocks[1]
+                                  db:set(hb67,hb68)
+                                  db:set(hb69,hb70)
                                   api.sendKeyboard(msg.from.id, message, keyboard, true)
                                   end
                                   if blocks[1] and dbexam7 == 'w8' and msg.chat.type == 'private' then
                                           local message = "صورت سوال *5* تنظیم شد\nصورت سوال تست شماره *6* را ارسال کنید"
                                           local keyboard = do_keyboard_newexam()
-                                          db:set('new:6:head:'..msg.from.id,'w8')
-                                          db:set('new:5:head:'..msg.from.id,blocks[1])
+                                          local hb71 = 'new:6:head:'..msg.from.id
+                                          local hb72 = 'w8'
+                                          local hb73 = 'new:5:head:'..msg.from.id
+                                          local hb74 = blocks[1]
+                                          db:set(hb71,hb72)
+                                          db:set(hb73,hb74)
                                           api.sendKeyboard(msg.from.id, message, keyboard, true)
                                           end
                                           if blocks[1] and dbexam8 == 'w8' and msg.chat.type == 'private' then
                                                   local message = "صورت سوال *6* تنظیم شد\nصورت سوال تست شماره *7* را ارسال کنید"
                                                   local keyboard = do_keyboard_newexam()
-                                                  db:set('new:7:head:'..msg.from.id,'w8')
-                                                  db:set('new:6:head:'..msg.from.id,blocks[1])
+                                                  local hb75 = 'new:7:head:'..msg.from.id
+                                                  local hb76 = 'w8'
+                                                  local hb77 = 'new:6:head:'..msg.from.id
+                                                  local hb78 = blocks[1]
+                                                  db:set(hb75,hb76)
+                                                  db:set(hb77,hb78)
                                                   api.sendKeyboard(msg.from.id, message, keyboard, true)
                                                   end
                                                   if blocks[1] and dbexam9 == 'w8' and msg.chat.type == 'private' then
                                                           local message = "صورت سوال *7* تنظیم شد\nصورت سوال تست شماره *8* را ارسال کنید"
                                                           local keyboard = do_keyboard_newexam()
-                                                          db:set('new:8:head:'..msg.from.id,'w8')
-                                                          db:set('new:7:head:'..msg.from.id,blocks[1])
+                                                          local hb79 = 'new:8:head:'..msg.from.id
+                                                          local hb80 = 'w8'
+                                                          local hb81 = 'new:7:head:'..msg.from.id
+                                                          local hb82 = blocks[1]
+                                                          db:set(hb79,hb80)
+                                                          db:set(hb81,hb82)
                                                           api.sendKeyboard(msg.from.id, message, keyboard, true)
                                                           end
                                                           if blocks[1] and dbexam10 == 'w8' and msg.chat.type == 'private' then
                                                                   local message = "صورت سوال *8* تنظیم شد\nصورت سوال تست شماره *9* را ارسال کنید"
                                                                   local keyboard = do_keyboard_newexam()
-                                                                  db:set('new:9:head:'..msg.from.id,'w8')
-                                                                  db:set('new:8:head:'..msg.from.id,blocks[1])
+                                                                  local hb83 = 'new:9:head:'..msg.from.id
+                                                                  local hb84 = 'w8'
+                                                                  local hb85 = 'new:8:head:'..msg.from.id
+                                                                  local hb86 = blocks[1]
+                                                                  db:set(hb83,hb84)
+                                                                  db:set(hb85,hb86)
                                                                   api.sendKeyboard(msg.from.id, message, keyboard, true)
                                                                   end
                                                                   if blocks[1] and dbexam11 == 'w8' and msg.chat.type == 'private' then
                                                                           local message = "صورت سوال *9* تنظیم شد\nصورت سوال تست شماره *10* را ارسال کنید"
                                                                           local keyboard = do_keyboard_newexam()
-                                                                          db:set('new:10:head:'..msg.from.id,'w8')
-                                                                          db:set('new:9:head:'..msg.from.id,blocks[1])
+                                                                          local hb87 = 'new:10:head:'..msg.from.id
+                                                                          local hb88 = 'w8'
+                                                                          local hb89 = 'new:9:head:'..msg.from.id
+                                                                          local hb90 = blocks[1]
+                                                                          db:set(hb87,hb88)
+                                                                          db:set(hb89,hb90)
                                                                           api.sendKeyboard(msg.from.id, message, keyboard, true)
                                                                           end
                                                   if blocks[1] and dbexam12 == 'w8' and msg.chat.type == 'private' then
                                                           local message = "صورت سوال *10* تنظیم شد\nاکنون چهار پاسخ تست *1* را مانند نمونه:\n"..example.."\nارسال نمایید"
                                                           local keyboard = do_keyboard_newexam()
-                                                          db:set('new:10:head:'..msg.from.id,block[1])
-                                                          db:set('new:1:ans:'..msg.from.id,'w8')
+                                                          local hb91 = 'new:10:head:'..msg.from.id
+                                                          local hb92 = blocks[1]
+                                                          local hb93 = 'new:1:ans:'..msg.from.id
+                                                          local hb94 = 'w8'
+                                                          db:set(hb91,hb92)
+                                                          db:set(hb93,hb94)
                                                           api.sendKeyboard(msg.from.id, message, keyboard, true)
                                                           end
                                           if blocks[1] and blocks[2] and ans1 == 'w8' and msg.chat.type == 'private' then
@@ -483,8 +556,12 @@ local idd = msg.from.id
 			                        local full = blocks[1]..''..blocks[2]
                                                        local message = "گزینه های تست شماره *1* تنظیم شد\nگزینه های تست شماره *2* را مانند فرم قبل ارسال نمایید"
                                                        local keyboard = do_keyboard_newexam()
-                                                  db:set('new1:ans:'..msg.from.id,full)
-					          db:set('new2:ans:'..msg.from.id,'w8')
+                                                       local hb95 = 'new1:ans:'..msg.from.id
+                                                       local hb96
+                                                       local hb97 = 'new2:ans:'..msg.from.id
+                                                       local hb98 = 'w8'
+                                                  db:set(hb95,full)
+					          db:set(hb97,hb98)
                                                   api.sendKeyboard(msg.from.id, message, keyboard, true)
                                                                      end
                                         local message = "خطا!!\nدوباره گزینه ها را مانند نمونه ارسال نمایید"
@@ -496,8 +573,12 @@ local idd = msg.from.id
 			                        local full = blocks[1]..''..blocks[2]
                                                        local message = "گزینه های تست شماره *2* تنظیم شد\nگزینه های تست شماره *3* را مانند فرم قبل ارسال نمایید"
                                                        local keyboard = do_keyboard_newexam()
-                                                  db:set('new2:ans:'..msg.from.id,full)
-					          db:set('new3:ans:'..msg.from.id,'w8')
+                                                       local hb99 = 'new:2:ans:'..msg.from.id
+                                                       local hb100
+                                                       local hb101 = 'new:3:ans:'..msg.from.id
+                                                       local hb102 = 'w8'
+                                                  db:set(hb99,full)
+					          db:set(hb101,hb102)
                                                   api.sendKeyboard(msg.from.id, message, keyboard, true)
                                                                      end
                                         local message = "خطا!!\nدوباره گزینه ها را مانند نمونه ارسال نمایید"
@@ -509,8 +590,12 @@ local idd = msg.from.id
 			                        local full = blocks[1]..''..blocks[2]
                                                        local message = "گزینه های تست شماره *3* تنظیم شد\nگزینه های تست شماره *4* را مانند فرم قبل ارسال نمایید"
                                                        local keyboard = do_keyboard_newexam()
-                                                  db:set('new3:ans:'..msg.from.id,full)
-					          db:set('new4:ans:'..msg.from.id,'w8')
+                                                       local hb103 = 'new:3:ans:'..msg.from.id
+                                                       local hb104
+                                                       local hb105 = 'new:4:ans:'..msg.from.id
+                                                       local hb106 = 'w8'
+                                                  db:set(hb103,full)
+					          db:set(hb105,hb106)
                                                   api.sendKeyboard(msg.from.id, message, keyboard, true)
                                                                      end
                                         local message = "خطا!!\nدوباره گزینه ها را مانند نمونه ارسال نمایید"
@@ -522,8 +607,12 @@ local idd = msg.from.id
 			                        local full = blocks[1]..''..blocks[2]
                                                        local message = "گزینه های تست شماره *4* تنظیم شد\nگزینه های تست شماره *5* را مانند فرم قبل ارسال نمایید"
                                                        local keyboard = do_keyboard_newexam()
-                                                  db:set('new4:ans:'..msg.from.id,full)
-					          db:set('new5:ans:'..msg.from.id,'w8')
+                                                       local hb107 = 'new:4:ans:'..msg.from.id
+                                                       local hb108
+                                                       local hb109 = 'new:5:ans:'..msg.from.id
+                                                       local hb110 = 'w8'
+                                                  db:set(hb107,full)
+					          db:set(hb109,hb110)
                                                   api.sendKeyboard(msg.from.id, message, keyboard, true)
                                                                      end
                                         local message = "خطا!!\nدوباره گزینه ها را مانند نمونه ارسال نمایید"
@@ -535,8 +624,12 @@ local idd = msg.from.id
 			                        local full = blocks[1]..''..blocks[2]
                                                        local message = "گزینه های تست شماره *5* تنظیم شد\nگزینه های تست شماره *6* را مانند فرم قبل ارسال نمایید"
                                                        local keyboard = do_keyboard_newexam()
-                                                  db:set('new5:ans:'..msg.from.id,full)
-					          db:set('new6:ans:'..msg.from.id,'w8')
+                                                       local hb111 = 'new:5:ans:'..msg.from.id
+                                                       local hb112
+                                                       local hb113 = 'new:6:ans:'..msg.from.id
+                                                       local hb114 = 'w8'
+                                                  db:set(hb111,full)
+					          db:set(hb113,hb114)
                                                   api.sendKeyboard(msg.from.id, message, keyboard, true)
                                                                      end
                                         local message = "خطا!!\nدوباره گزینه ها را مانند نمونه ارسال نمایید"
@@ -548,8 +641,12 @@ local idd = msg.from.id
 			                        local full = blocks[1]..''..blocks[2]
                                                        local message = "گزینه های تست شماره *6* تنظیم شد\nگزینه های تست شماره *7* را مانند فرم قبل ارسال نمایید"
                                                        local keyboard = do_keyboard_newexam()
-                                                  db:set('new6:ans:'..msg.from.id,full)
-					          db:set('new7:ans:'..msg.from.id,'w8')
+                                                       local hb115 = 'new:6:ans:'..msg.from.id
+                                                       local hb116
+                                                       local hb117 = 'new:7:ans:'..msg.from.id
+                                                       local hb118 = 'w8'
+                                                  db:set(hb115,full)
+					          db:set(hb117,hb118)
                                                   api.sendKeyboard(msg.from.id, message, keyboard, true)
                                                                      end
                                         local message = "خطا!!\nدوباره گزینه ها را مانند نمونه ارسال نمایید"
@@ -561,8 +658,12 @@ local idd = msg.from.id
 			                        local full = blocks[1]..''..blocks[2]
                                                        local message = "گزینه های تست شماره *7* تنظیم شد\nگزینه های تست شماره *8* را مانند فرم قبل ارسال نمایید"
                                                        local keyboard = do_keyboard_newexam()
-                                                  db:set('new7:ans:'..msg.from.id,full)
-					          db:set('new8:ans:'..msg.from.id,'w8')
+                                                       local hb119 = 'new:7:ans:'..msg.from.id
+                                                       local hb120
+                                                       local hb121 = 'new:8:ans:'..msg.from.id
+                                                       local hb122 = 'w8'
+                                                  db:set(hb119,full)
+					          db:set(hb121,hb122)
                                                   api.sendKeyboard(msg.from.id, message, keyboard, true)
                                                                      end
                                         local message = "خطا!!\nدوباره گزینه ها را مانند نمونه ارسال نمایید"
@@ -574,8 +675,12 @@ local idd = msg.from.id
 			                        local full = blocks[1]..''..blocks[2]
                                                        local message = "گزینه های تست شماره *8* تنظیم شد\nگزینه های تست شماره *9* را مانند فرم قبل ارسال نمایید"
                                                        local keyboard = do_keyboard_newexam()
-                                                  db:set('new8:ans:'..msg.from.id,full)
-					          db:set('new9:ans:'..msg.from.id,'w8')
+                                                       local hb123 = 'new:8:ans:'..msg.from.id
+                                                       local hb124
+                                                       local hb125 = 'new:9:ans:'..msg.from.id
+                                                       local hb126 = 'w8'
+                                                  db:set(hb123,full)
+					          db:set(hb125,hb126)
                                                   api.sendKeyboard(msg.from.id, message, keyboard, true)
                                                                      end
                                         local message = "خطا!!\nدوباره گزینه ها را مانند نمونه ارسال نمایید"
@@ -587,8 +692,12 @@ local idd = msg.from.id
 			                        local full = blocks[1]..''..blocks[2]
                                                        local message = "گزینه های تست شماره *9* تنظیم شد\nگزینه های تست شماره *10* را مانند فرم قبل ارسال نمایید"
                                                        local keyboard = do_keyboard_newexam()
-                                                  db:set('new9:ans:'..msg.from.id,full)
-					          db:set('new10:ans:'..msg.from.id,'w8')
+                                                       local hb127 = 'new:9:ans:'..msg.from.id
+                                                       local hb128
+                                                       local hb129 = 'new:10:ans:'..msg.from.id
+                                                       local hb130 = 'w8'
+                                                  db:set(hb127,full)
+					          db:set(hb129,hb130)
                                                   api.sendKeyboard(msg.from.id, message, keyboard, true)
                                                                      end
                                         local message = "خطا!!\nدوباره گزینه ها را مانند نمونه ارسال نمایید"
@@ -600,8 +709,12 @@ local idd = msg.from.id
 			                        local full = blocks[1]..''..blocks[2]
                                                 local message = "گزینه های تست شماره *10* تنظیم شد\n"..example2.."\nاکنون پاسخ های درست تست ها را مانند نمونه بالا ارسال نمایید"
 	                         		local keyboard = do_keyboard_newexam()
-                                                  db:set('new10:ans:'..msg.from.id,full)
-	 					  db:set('new:cor','w8')
+                              local hb131 = 'new:x:ans:'..msg.from.id
+                              local hb132
+                              local hb133 = 'new:cor:'..msg.from.id
+                              local hb134 = 'w8'
+                                                  db:set(hb131,full)
+	 					  db:set(hb133,hb134)
                                                   api.sendKeyboard(msg.from.id, message, keyboard, true)
                                                                      end
                                         local message = "خطا!!\nدوباره گزینه ها را مانند نمونه ارسال نمایید"
@@ -613,7 +726,8 @@ local idd = msg.from.id
 			local full = blocks[1]..''..blocks[2]
                     local message = "امتحان با موفقیت ثبت شد\nلینک : "..linkexam.."\nکد : "..examlink.."\nبا اشتراک گذاری لینک یا کد بالا، افراد میتوانند امتحان بدهند و کارنامه آن ها برای شما نیز ارسال میگردد"
                     local keyboard = do_keyboard_examadded()
-			  db:set('new:cor',full)
+                    local hb135 = 'new:cor'
+			  db:set(hb135,full)
                         api.sendKeyboard(msg.from.id, message, keyboard, true)
 	                  local text = 'return { \n exam_time = \"'..dbetime..'\",\n exam_name = \"'..dbexam1..'\",\n exam_owner = \"'..db1..'\",\n exam_maker = \"'..dbexam2..'\",\n exam_id = \"'..examlink..'\",\n exam_link = \"'..linkexam..'\",\n q1 = \"'..dbexam3..'\",\n q2 = \"'..dbexam4..'\",\n q3 = \"'..dbexam5..'\",\n q4 = \"'..dbexam6..'\",\n q5 = \"'..dbexam7..'\",\n q6 = \"'..dbexam8..'\",\n q7 = \"'..dbexam9..'\",\n q8 = \"'..dbexam10..'\",\n q9 = \"'..dbexam11..'\",\n q10 = \"'..dbexam12..'\",\n a1 = { \n '..ans1..' \n },\n a2 = { \n '..ans2..' \n },\n a3 = { \n '..ans3..' \n },\n a4 = { \n '..ans4..' \n },\n a5 = { \n '..ans5..' \n },\n a6 = { \n '..ans6..' \n },\n a7 = { \n '..ans7..' \n },\n a8 = { \n '..ans8..' \n },\n a9 = { \n '..ans9..' \n },\n a10 = { \n '..ans10..' \n },\n cans = dofile(\"./exams/'..examlink..'c.lua\") \n }'
    local file = io.open("./exams/"..examlink..".lua", "w")
@@ -637,13 +751,17 @@ local action = function(msg, blocks, ln)
 local msg_id = msg.message_id
 local chat = msg.chat.id
 local query = blocks[1]
-local db1 = db:get('username:'..msg.from.id)
-local db2 = db:get('password:'..msg.from.id)
+local hb136 = 'username:'..msg.from.id
+local hb137 = 'password:'..msg.from.id
+local db1 = db:get(hb136)
+local db2 = db:get(hb137)
 local db3 = db:get(db1)
 local text
     if msg.cb then
 	if query == 'teach1' or 'teach2' then
-			db:set(msg.from.id..":type","t")
+  local hb138 = msg.from.id..":type"
+   local hb139 = "t"
+			db:set(hb138,hb139)
 		local keyboard = do_keyboard_teacherfirst()
 		local text = [[جهت آشنایی بیشتر با ربات و کاربرد آن لطفا راهنما را بررسی فرمایید]]
 		api.editMessageText(chat, msg_id, text, keyboard, true)
@@ -666,20 +784,26 @@ if query == 'notice' then
 	if query == 'signup' then
 		local keyboard = do_keyboard_signup()
 		local text = [[*نام کاربری مورد نظر خود را ارسال کنید:*]]
-db:set('username:'..msg.from.id,'waiting for choose')
+    local hb140 = 'username:'..msg.from.id
+    local hb141 = 'waiting for choose'
+db:set(hb140,hb141)
 		api.editMessageText(chat, msg_id, text, keyboard, true)
     end
   if query == 'login' then
 		local keyboard = do_keyboard_login()
 		local text = [[*نام کاربری خود را ارسال کنید:*]]
-    db:set('username:'..msg.from.id,'waiting for send')
+    local hb142 = 'username:'..msg.from.id
+    local hb143 = 'waiting for send'
+    db:set(hb142,hb143)
 		api.editMessageText(chat, msg_id, text, keyboard, true)
     end
   if query == 'loginconfirm' then
 if db2 == db3 then
-		local keyboard = do_keyboard_login3()
+		local keyboard = do_keyboard_teacheron()
 		local text = [[*شما وارد شدید!*\nعملیات مورد نظر را انتخاب نمایید]]
-    db:set(db1..':lastid',msg.from.id)
+    local hb144 = db1..':lastid'
+    local hb145 = msg.from.id
+    db:set(hb144,hb145)
     api.editMessageText(chat, msg_id, text, keyboard, true)
     end
     local keyboard = do_keyboard_login2()
@@ -707,17 +831,22 @@ if db2 == db3 then
     api.editMessageText(chat, msg_id, text, keyboard, true)
     end
   if query == 'sureexam' then
+   local hbbbb = db1..':charge'
 		local keyboard = do_keyboard_newexam()
-	        local chn = db:get(db1..':charge')
+	        local chn = db:get(hbbbb)
 	        local buy = tonumber(chn) - 1000
 		local text = [[عنوان امتحان را ارسال کنید]]
 	 if chn then
-		db:set(db1..':charge',buy2)
-                db:set('examname:new:'..msg.from.id,'w8')
+   local hb146 = db1..':charge'
+   local hb147 = buy2
+   local hb148 = 'examname:new:'..msg.from.id
+   local hb149 = 'w8'
+		db:set(hb146,hb147)
+                db:set(hb148,hb149)
 	  api.editMessageText(chat, msg_id, text, keyboard, true)
     end
     local text = [[شارژ حساب شما کافی نیست، لطفا حساب خود را شارژ نمایید]]
-    local keyboard = do_keyboard_charge
+    local keyboard = do_keyboard_charge2
 	  api.editMessageText(chat, msg_id, text, keyboard, true)
     end
   if query == 'editexam' then
@@ -726,13 +855,18 @@ if db2 == db3 then
 		api.editMessageText(chat, msg_id, text, keyboard, true)
     end
   if query == 'students' then
-		local keyboard = do_keyboard_coming()
+		local keyboard = do_keyboard_coming2()
 		local text = [[در نسخه های بعدی فعال میشود...]] --editable
 		api.editMessageText(chat, msg_id, text, keyboard, true)
     end
   if query == 'examlist' then
-		local keyboard = do_keyboard_coming()
+		local keyboard = do_keyboard_coming3()
 		local text = [[در نسخه های بعدی فعال میشود...]] --editable
+		api.editMessageText(chat, msg_id, text, keyboard, true)
+    end
+  if query == 'accounton' then
+		local keyboard = do_keyboard_teacheron()
+		local text = [[عملیات مورد نظر را انتخاب نمایید:]] --editable
 		api.editMessageText(chat, msg_id, text, keyboard, true)
     end
 	end
