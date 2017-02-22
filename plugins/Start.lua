@@ -86,7 +86,6 @@ local stats = db11+1
             local message = "👋سلام!\nدوره تحصیلی خود را انتخاب کنید:"
             local keyboard = do_keyboard_private()
             api.sendKeyboard(msg.from.id, message, keyboard, true)
-            end
 	else if blocks[1] == 'start' and blocks[2] and not db12 and msg.chat.type == 'private' then
             local message = "👋سلام!\nدوره تحصیلی خود را انتخاب کنید:"
             local keyboard = do_keyboard_private2()
