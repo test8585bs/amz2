@@ -1,10 +1,10 @@
 return {
-  bot_api_key = '367241355:AAFWrJw1rxaWofmDiDqe2t3G-VjnQPb_UBk',
+  bot_api_key = '247505227:AAG1Iatya9cbYB2TjVouvI0D3P8FhDcrtt0',
   admin = 221425094,
   channel = 'JackiTeam_ch',
 
   plugins = {
-    'Start.lua',
+    'Panel.lua', 'Exam.lua', 'Help.lua', 'DataBase.lua', 'Start.lua'
   },
   api_errors = {
     [101] = 'Not enough rights to kick participant',
