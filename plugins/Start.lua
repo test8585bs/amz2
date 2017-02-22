@@ -37,23 +37,23 @@ end
 local function do_keyboard_school()
     local keyboard = {}
     keyboard.inline_keyboard = {
-    	{{text = '🎓دوره متوسطه اول', callback_data = '!school1'}}, {{text = '🎓دوره متوسطه دوم', callback_data = '!school2'}}}
+    	{{text = '🎓دوره متوسطه اول', callback_data = '!schoola'}}, {{text = '🎓دوره متوسطه دوم', callback_data = '!schoolb'}}}
     return keyboard
 end
 
 local function do_keyboard_teach()
     local keyboard = {}
     keyboard.inline_keyboard = {
-    	{{text = '🎓دوره متوسطه اول', callback_data = '!teach1'}}, {{text = '🎓دوره متوسطه دوم', callback_data = '!teach2'}}}
+    	{{text = '🎓دوره متوسطه اول', callback_data = '!teacha'}}, {{text = '🎓دوره متوسطه دوم', callback_data = '!teachb'}}}
     return keyboard
 end
 
 local function do_keyboard_schoola()
     local keyboard = {}
     keyboard.inline_keyboard = {
-    	{{text = '📚هفتم', callback_data = '!school7'}},
-	{{text = '📚هشتم', url = '!school8'}},
-        {{text = '📚نهم', url = '!school9'}},
+    	{{text = '📚هفتم', callback_data = '!schoolc'}},
+	{{text = '📚هشتم', url = '!schoold'}},
+        {{text = '📚نهم', url = '!schoole'}},
         {{text = '🔙', callback_data = '!school'}}
     }
     return keyboard
@@ -62,9 +62,9 @@ end
 local function do_keyboard_schoolb()
     local keyboard = {}
     keyboard.inline_keyboard = {
-    	{{text = '📚دهم', callback_data = '!school10'}},
-	{{text = '📚یازدهم', url = '!school11'}},
-        {{text = '📚دوازدهم', url = '!school12'}},
+    	{{text = '📚دهم', callback_data = '!schoolf'}},
+	{{text = '📚یازدهم', url = '!schoolg'}},
+        {{text = '📚دوازدهم', url = '!schoolh'}},
         {{text = '🔙', callback_data = '!school'}}
     }
     return keyboard
@@ -109,12 +109,12 @@ end
             local keyboard = do_keyboard_school()
         api.editMessageText(msg.chat.id, msg_id, text, keyboard, true)
 end
-if query == 'school1' then
+if query == 'schoola' then
         local text = "پایه تحصیلی* خود را انتخاب کنید*:"
         local keyboard = do_keyboard_schoola()
     api.editMessageText(msg.chat.id, msg_id, text, keyboard, true)
 end
-if query == 'school2' then
+if query == 'schoolb' then
         local text = "پایه تحصیلی* خود را انتخاب کنید*:"
         local keyboard = do_keyboard_schoolb()
     api.editMessageText(msg.chat.id, msg_id, text, keyboard, true)
