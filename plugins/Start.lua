@@ -48,7 +48,7 @@ local function do_keyboard_teach()
     return keyboard
 end
 
-local function do_keyboard_school1()
+local function do_keyboard_schoola()
     local keyboard = {}
     keyboard.inline_keyboard = {
     	{{text = '📚هفتم', callback_data = '!school7'}},
@@ -59,7 +59,7 @@ local function do_keyboard_school1()
     return keyboard
 end
 
-local function do_keyboard_school2()
+local function do_keyboard_schoolb()
     local keyboard = {}
     keyboard.inline_keyboard = {
     	{{text = '📚دهم', callback_data = '!school10'}},
@@ -111,12 +111,12 @@ end
 end
 if query == 'school1' then
         local text = "پایه تحصیلی* خود را انتخاب کنید*:"
-        local keyboard = do_keyboard_school1()
+        local keyboard = do_keyboard_schoola()
     api.editMessageText(msg.chat.id, msg_id, text, keyboard, true)
 end
 if query == 'school2' then
         local text = "پایه تحصیلی* خود را انتخاب کنید*:"
-        local keyboard = do_keyboard_school2()
+        local keyboard = do_keyboard_schoolb()
     api.editMessageText(msg.chat.id, msg_id, text, keyboard, true)
 end
 	       if query == 'teach' then
