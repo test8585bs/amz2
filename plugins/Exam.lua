@@ -908,7 +908,7 @@ end
              api.sendKeyboard(chat, text8, keyboard8, true)
              api.sendKeyboard(chat, text9, keyboard9, true)
              api.sendKeyboard(chat, text10, keyboard10, true)
-            api.sendKeyboard(chat, text11, keyboard11, true
+            api.sendKeyboard(chat, text11, keyboard11, true)
     end
    if query == 'a1_' then
     local co = examc.a
